@@ -15,7 +15,7 @@
   <div class="ipts-login">
     <ion-list class="lbl-user">
       <ion-item>
-        <ion-input labelPlacement="stacked">
+        <ion-input [(ngModel)]="user" labelPlacement="stacked">
           <div slot="label" class="txt-design">Usuario</div>
         </ion-input>
       </ion-item>
@@ -30,7 +30,7 @@
     </ion-list>
   </div>
 
-  <ion-button class="btn-login" expand="block" color="warning" routerLink='/home'>INGRESAR</ion-button>
+  <ion-button class="btn-login" expand="block" color="warning" routerLink='/home' (click)="enviar()">INGRESAR</ion-button>
   
   <p class="txt-rest">
     <a [routerLink]="['/restablecer']">OLVIDASTE TU CONTRASEÑA?</a>
