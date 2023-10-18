@@ -52,6 +52,13 @@
 
 <ion-footer class="footer">
 
-<ion-button expand="block" routerLink='/admin' class="alo" >Vista de Administrador</ion-button>
+<ion-button id="present-alert" expand="block" routerLink='/admin' class="alo" >Vista de Administrador</ion-button>
+<ion-alert
+  trigger="present-alert"
+  header="¡ALERTA!"
+  subHeader="Acceso Denegado"
+  message="PERMISOS INSUFICIENTES"
+  [buttons]="alertButtons"
+></ion-alert>
 
 </ion-footer>

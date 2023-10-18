@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
+  public alertButtons = ['OK'];
   user : string = '';
 
   constructor(private router : Router) {
