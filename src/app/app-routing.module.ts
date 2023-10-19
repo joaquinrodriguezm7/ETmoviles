@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'loader',
     pathMatch: 'full'
   },
   {
@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule),
     canActivate: [NoIngresadoGuard]
   },
+  {
+    path: 'loader',
+    loadChildren: () => import('./loader/loader.module').then( m => m.LoaderPageModule)
+  },
+
 
 
 ];
