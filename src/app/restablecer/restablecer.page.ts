@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef,Renderer2 } from '@angular/core';
+
 
 @Component({
   selector: 'app-restablecer',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestablecerPage implements OnInit {
 
-  constructor() { }
+  @ViewChild('btn') btn :ElementRef;
+
+  constructor(private renderer : Renderer2) { }
+
+    applyBounce() {
+      this.renderer.addClass(this.btn.nativeElement, 'bounce');
+      setTimeout(() => {
+        this.renderer.removeClass(this.btn.nativeElement, 'bounce');
+      }, 200);}
 
   ngOnInit() {
   }

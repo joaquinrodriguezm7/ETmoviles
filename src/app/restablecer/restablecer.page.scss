@@ -15,6 +15,7 @@ h1 {
     margin: 0 auto;
     font-weight: bold;
     margin-top: 50px;
+    font-size: 20px;
 }
   
 .ipts-login {
@@ -51,4 +52,39 @@ h1 {
     margin-top: 80px;
 }
 
+button {
+    width: 300px;
+    transform: scale(1);
+    padding: 18px;
+    background-color: #ffc409;
+    border: none;
+    border-radius: 13px;
+    color: black;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: sans-serif;
+  }
   
+  .bounce {
+    animation: bounce .25s ease-in-out;
+  }
+  
+  @keyframes bounce {
+    50% {
+      transform: scale(1.05);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+
+.containerbtn{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
