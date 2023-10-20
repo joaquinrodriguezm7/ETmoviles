@@ -31,7 +31,11 @@ const routes: Routes = [
   {
     path: 'loader',
     loadChildren: () => import('./loader/loader.module').then( m => m.LoaderPageModule)
+  },  {
+    path: 'viaje',
+    loadChildren: () => import('./viaje/viaje.module').then( m => m.ViajePageModule)
   },
+
 
 
 
