@@ -16,11 +16,7 @@ export class LoginPage implements OnInit {
   }
 
   enviar(){
-    this.router.navigate(['/home'],{
-      state: {
-        user: this.user
-      },
-    })
+    
   }
 
 }
