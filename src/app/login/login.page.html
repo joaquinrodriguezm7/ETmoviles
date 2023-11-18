@@ -12,25 +12,35 @@
 
   <h2>¡Bienvenido!</h2>
 
-  <div class="ipts-login">
-    <ion-list class="lbl-user">
-      <ion-item>
-        <ion-input [(ngModel)]="user" labelPlacement="stacked">
-          <div slot="label" class="txt-design">Usuario</div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
+  <form [formGroup]="forma" (ngSubmit)="guardar">
+    
+    <ion-input class="ipts-form"
+      label="Usuario" 
+      labelPlacement="floating"  
+      [class.is.invalid] = "invalidUser"
+      formControlName="usuario"
+    ></ion-input>
+    <ion-text class="txt-invalid" *ngIf="invalidUser" color="danger">El usuario debe tener como mínimo 5 caracteres</ion-text>
 
-    <ion-list class="lbl-pass">
-      <ion-item>
-        <ion-input labelPlacement="stacked" type="Password">
-          <div slot="label" class="txt-design">Password</div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
-  </div>
+    <ion-input class="ipts-form"
+      label="Contraseña"
+      labelPlacement="floating"
+      type="password"
+      formControlName="pass"
+    ></ion-input>
+    <ion-text class="txt-invalid" *ngIf="invalidPass" color="danger">Debe ingresar una contraseña</ion-text>
+
+    
+  </form>
+
 
   <ion-button class="btn-login" expand="block" color="warning" routerLink='/home' (click)="enviar()">INGRESAR</ion-button>
+ 
+      <!--<ion-button type="submit" (click)="guardar()">
+        Guardar
+      </ion-button>!-->
+      
+
   
   <p class="txt-rest">
     <a [routerLink]="['/restablecer']">OLVIDASTE TU CONTRASEÑA?</a>
