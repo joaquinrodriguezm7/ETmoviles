@@ -30,11 +30,11 @@
     ></ion-input>
     <ion-text class="txt-invalid" *ngIf="invalidPass" color="danger">Debe ingresar una contraseña</ion-text>
 
-    
+    <ion-button class="btn-login" expand="block" color="warning" (click)="guardar()">INGRESAR</ion-button>
+
   </form>
 
 
-  <ion-button class="btn-login" expand="block" color="warning" routerLink='/home' (click)="enviar()">INGRESAR</ion-button>
  
       <!--<ion-button type="submit" (click)="guardar()">
         Guardar

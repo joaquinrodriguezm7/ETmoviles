@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { DjangoService } from '../service/django.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginPage implements OnInit {
 
   user: string = '';
   forma!: FormGroup;
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(private router: Router, private fb: FormBuilder, private djangoapi: DjangoService) {
     this.crearFormulario();
   }
 
@@ -32,7 +33,12 @@ export class LoginPage implements OnInit {
   }
 
   guardar(){
-    console.log(this.forma);
+    this.djangoapi.postData(this.forma.value).subscribe(
+      (response)=>{
+        console.log('respuestaBackend:',response)
+      }
+      
+    )
   }
 
   ngOnInit() {
