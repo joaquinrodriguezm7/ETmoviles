@@ -19,6 +19,7 @@
       labelPlacement="floating"  
       [class.is.invalid] = "invalidUser"
       formControlName="usuario"
+      [(ngModel)] = 'usuario'
     ></ion-input>
     <ion-text class="txt-invalid" *ngIf="invalidUser" color="danger">El usuario debe tener como mínimo 5 caracteres</ion-text>
 
@@ -27,21 +28,20 @@
       labelPlacement="floating" 
       type="password"
       formControlName="pass"
+      [(ngModel)] = 'pass'
     ></ion-input>
     <ion-text class="txt-invalid" *ngIf="invalidPass" color="danger">Debe ingresar una contraseña</ion-text>
 
     <ion-button class="btn-login" expand="block" color="warning" (click)="guardar()">INGRESAR</ion-button>
 
+    <ion-checkbox [(ngModel)]="checked" (ionChange)="check()" [ngModelOptions]="{standalone: true}">Recuerdame</ion-checkbox>
+
   </form>
 
-
- 
       <!--<ion-button type="submit" (click)="guardar()">
         Guardar
       </ion-button>!-->
       
-
-  
   <p class="txt-rest">
     <a [routerLink]="['/restablecer']">OLVIDASTE TU CONTRASEÑA?</a>
   </p>

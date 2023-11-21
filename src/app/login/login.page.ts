@@ -1,19 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { DjangoService } from '../service/django.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
-
+export class LoginPage implements OnInit {
+  
+  usuario : string = '';
+  pass : string = '';
+  checked : boolean = false;
   user: string = '';
   forma!: FormGroup;
-  constructor(private router: Router, private fb: FormBuilder, private djangoapi: DjangoService) {
+  constructor(private router: Router, private fb: FormBuilder, private djangoapi: DjangoService, private storage : Storage) {
     this.crearFormulario();
+  }
+
+  async ngOnInit(){
+    await this.storage.create();
+    this.storage.get('user').then((val) => {
+      this.usuario=val;
+      });
+      this.storage.get('pass').then((val) => {
+        this.pass=val;
+        });
+        this.storage.get('checked').then((val) => {
+        this.checked=val;
+        });
   }
 
   get invalidUser(){
@@ -33,6 +50,15 @@ export class LoginPage {
   }
 
   guardar(){
+    if (this.checked){
+      this.storage.set("user", this.forma.get("usuario")?.value)
+      this.storage.set("pass", this.forma.get("pass")?.value)
+    } else {
+      this.storage.remove("user")
+      this.storage.remove("pass")
+    }
+    
+      
     this.djangoapi.postData(this.forma.value).subscribe(
       (response)=>{
         console.log('backendResponse:',response)
@@ -40,6 +66,10 @@ export class LoginPage {
       }
       
     )
+  }
+
+  check(){
+    this.storage.set("checked", this.checked)
   }
 
   enviar(){
