@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { DjangoService } from '../service/django.service';
@@ -8,7 +8,7 @@ import { DjangoService } from '../service/django.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   user: string = '';
   forma!: FormGroup;
@@ -35,13 +35,11 @@ export class LoginPage implements OnInit {
   guardar(){
     this.djangoapi.postData(this.forma.value).subscribe(
       (response)=>{
-        console.log('respuestaBackend:',response)
+        console.log('backendResponse:',response)
+        this.router.navigate(['home', response])
       }
       
     )
-  }
-
-  ngOnInit() {
   }
 
   enviar(){

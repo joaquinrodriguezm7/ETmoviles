@@ -5,11 +5,11 @@ describe('RestablecerPage', () => {
   let component: RestablecerPage;
   let fixture: ComponentFixture<RestablecerPage>;
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     fixture = TestBed.createComponent(RestablecerPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
