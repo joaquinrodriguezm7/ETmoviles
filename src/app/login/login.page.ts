@@ -11,6 +11,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class LoginPage implements OnInit {
   
+  
   usuario : string = '';
   pass : string = '';
   checked : boolean = false;
@@ -62,7 +63,8 @@ export class LoginPage implements OnInit {
     this.djangoapi.postData(this.forma.value).subscribe(
       (response)=>{
         console.log('backendResponse:',response)
-        this.router.navigate(['home', response])
+        this.storage.set("userAuth", response.nombre_usuario)
+        this.router.navigate(['home'])
       }
       
     )

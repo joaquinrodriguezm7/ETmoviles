@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class DjangoService {
 
-  apiURL = 'http://127.0.0.1:8000/api'
+  apiURL = 'https://9pn8qpf3-8000.brs.devtunnels.ms/api'
   constructor(private http: HttpClient) { }
 
   postData(data: any):Observable<any>{
