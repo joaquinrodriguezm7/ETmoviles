@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
       pass:['', Validators.required]
     })
   }
-
+  // a
   guardar(){
     if (this.checked){
       this.storage.set("user", this.forma.get("usuario")?.value)
