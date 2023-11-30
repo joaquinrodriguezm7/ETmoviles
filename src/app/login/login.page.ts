@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   checked : boolean = false;
   user: string = '';
   forma!: FormGroup;
+  mensaje: string = '';
   constructor(private router: Router, private fb: FormBuilder, private djangoapi: DjangoService, private storage : Storage) {
     this.crearFormulario();
   }
@@ -57,17 +58,33 @@ export class LoginPage implements OnInit {
     } else {
       this.storage.remove("user")
       this.storage.remove("pass")
-    }
-    
-      
+    }  
     this.djangoapi.postData(this.forma.value).subscribe(
       (response)=>{
-        console.log('backendResponse:',response)
-        this.storage.set("userAuth", response.nombre_usuario)
-        this.router.navigate(['home'])
+        if(response.tipoUsuario == 2){
+          this.router.navigate(['/home']);
+        }
+        else if(response.tipoUsuario == 1){
+          this.router.navigate(['/cliente'])
+        }
+        
+        this.mensaje = '';
+      },
+      (error)=>{
+        if(error.status === 400){
+          this.mensaje = 'Credenciales inválidas';
+          setTimeout(() => {
+            this.mensaje='';
+          }, 5000);
+        }
+        else if(error.status === 500){
+          this.mensaje = 'Error interno del servidor';
+          setTimeout(() => {
+            this.mensaje='';
+          }, 5000);
+        } 
       }
-      
-    )
+    );
   }
 
   check(){
