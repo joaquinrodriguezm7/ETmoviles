@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>register-car</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-button (click)="getId()">
+    a
+  </ion-button>
+
+  <form [formGroup]="form" (ngSubmit)="registerVehiculo()">
+    <ion-input label="Patente" labelPlacement="floating" formControlName="patente"></ion-input>
+    <ion-input label="Marca" labelPlacement="floating" formControlName="marca"></ion-input>
+    <ion-input label="Modelo" labelPlacement="floating" formControlName="modelo"></ion-input>
+    <ion-input label="Capacidad" labelPlacement="floating" formControlName="capacidad"></ion-input>
+    <ion-button (click)="registerVehiculo()">
+      Registrar
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +13,14 @@ export class DjangoService {
 
   postData(data: any):Observable<any>{
     return this.http.post(this.apiURL+'/user', data);
+  }
+
+  registerVehiculo(data: any): Observable<any> {
+    return this.http.post(this.apiURL+'/vehiculo', data);
+  }
+
+  getUsuarios():Observable<any>{
+    return this.http.get(this.apiURL+'/user')
+    .pipe(retry(3));
   }
 }

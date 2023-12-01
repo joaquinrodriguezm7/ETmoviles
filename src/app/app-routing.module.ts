@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -34,14 +34,19 @@ const routes: Routes = [
     path: 'viaje',
     loadChildren: () => import('./viaje/viaje.module').then( m => m.ViajePageModule),
     canActivate: [AuthGuard]
-  },  {
+  },
+  {
     path: 'notfound',
     loadChildren: () => import('./notfound/notfound.module').then( m => m.NotfoundPageModule)
   },
   {
     path: 'cliente',
     loadChildren: () => import('./cliente/cliente.module').then( m => m.ClientePageModule)
+  },  {
+    path: 'register-car',
+    loadChildren: () => import('./register-car/register-car.module').then( m => m.RegisterCarPageModule)
   },
+
 
 
 
