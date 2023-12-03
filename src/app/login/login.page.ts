@@ -52,6 +52,7 @@ export class LoginPage implements OnInit {
   }
   // a
   guardar(){
+    this.storage.set("nombre_usuario", this.forma.get("usuario")?.value)
     if (this.checked){
       this.storage.set("user", this.forma.get("usuario")?.value)
       this.storage.set("pass", this.forma.get("pass")?.value)

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DjangoService } from '../service/django.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-cliente',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cliente.page.scss'],
 })
 export class ClientePage implements OnInit {
-
-  constructor() { }
+  id: any;
+  constructor(private storage: Storage, private api: DjangoService) { }
 
   ngOnInit() {
+    this.storage.create()
   }
-
 }

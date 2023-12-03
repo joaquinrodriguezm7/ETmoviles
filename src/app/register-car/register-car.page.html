@@ -5,15 +5,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button (click)="getId()">
-    a
-  </ion-button>
-
   <form [formGroup]="form" (ngSubmit)="registerVehiculo()">
     <ion-input label="Patente" labelPlacement="floating" formControlName="patente"></ion-input>
     <ion-input label="Marca" labelPlacement="floating" formControlName="marca"></ion-input>
     <ion-input label="Modelo" labelPlacement="floating" formControlName="modelo"></ion-input>
-    <ion-input label="Capacidad" labelPlacement="floating" formControlName="capacidad"></ion-input>
+    <ion-input label="Capacidad" labelPlacement="floating" formControlName="capacidad" type="number"></ion-input>
+    <ion-input label="Nombre de Usuario" labelPlacement="floating" formControlName="nombre_usuario" [(ngModel)]="nombre_usuario" readonly="{{isDisabled}}"></ion-input>
     <ion-button (click)="registerVehiculo()">
       Registrar
     </ion-button>

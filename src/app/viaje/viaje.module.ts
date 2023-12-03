@@ -8,6 +8,7 @@ import { ViajePageRoutingModule } from './viaje-routing.module';
 
 import { ViajePage } from './viaje.page';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     FormsModule,
     IonicModule,
     ViajePageRoutingModule,
-    IonicStorageModule
+    IonicStorageModule,
+    ReactiveFormsModule
   ],
   declarations: [ViajePage]
 })

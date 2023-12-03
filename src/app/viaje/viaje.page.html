@@ -4,21 +4,18 @@
   </div>
 </ion-header>
 
-<ion-card>
-  <img  src="assets/img/auto.jpg" />
-  <ion-card-header>
-    <ion-card-title>Hacia Renca</ion-card-title>
-    <ion-card-subtitle>Elias Esveile</ion-card-subtitle>
-  </ion-card-header>
-
-  <ion-card-content>
-    Tarifa Minima: {{tarifaMinima}}
-    <br>
-    Capacidad: {{capacidad}}
-    <br>
-    Sede de Salida: {{sede}}
-  </ion-card-content>
-</ion-card>
-
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form" (ngSubmit)="registerViaje()">
+    <ion-input label="Dirección de Inicio" labelPlacement="floating" formControlName="inicio"></ion-input>
+    <ion-input label="Dirección de Termino" labelPlacement="floating" formControlName="termino"></ion-input>
+    <ion-input label="Costo por Persona" labelPlacement="floating" formControlName="costo"></ion-input>
+    <ion-input label="Patente" labelPlacement="floating" formControlName="patente"></ion-input>
+    <ion-input label="Nombre de Usuario" labelPlacement="floating" formControlName="nombre_usuario_dueño" [(ngModel)]="nombre_usuario" readonly="{{isDisabled}}"></ion-input>
+    <ion-input label="A" labelPlacement="floating" formControlName="nombre_usuario_cliente"></ion-input>
+    <ion-button (click)="registerViaje()">
+      Registrar
+    </ion-button>
+  </form>
+</ion-content>
 
 <ion-footer class="footer"></ion-footer>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DjangoService } from '../service/django.service';
+import { Storage } from '@ionic/storage-angular';
 @Component({
   selector: 'app-register-car',
   templateUrl: './register-car.page.html',
@@ -8,13 +9,20 @@ import { DjangoService } from '../service/django.service';
 })
 export class RegisterCarPage implements OnInit {
   form! : FormGroup;
-  users: any;
-  constructor(private api: DjangoService, private fb: FormBuilder) {
+  id: any;
+  nombre_usuario: any;
+  isDisabled: boolean = true
+  constructor(private api: DjangoService, private fb: FormBuilder, private storage: Storage) {
    }
 
   ngOnInit() {
-    this.crearFormulario()
+    this.crearFormulario();
+    this.storage.create();
+    this.storage.get('nombre_usuario').then((val) => {
+      this.nombre_usuario=val;
+      });
   }
+
 
   crearFormulario() {
     this.form = this.fb.group({
@@ -22,33 +30,13 @@ export class RegisterCarPage implements OnInit {
       marca:['', [Validators.required]],
       modelo:['', [Validators.required]],
       capacidad:['', [Validators.required]],
+      nombre_usuario:['', [Validators.required]],
+      
     })
-  }
-  // this.api.getUsuarios().subscribe(
-  //   (usuarios)=>{
-  //     console.log(usuarios);
-  //     this.users = usuarios;
-  //     console.log(this.users);
-  //   }
-  //   ,
-  //   (error)=>{
-  //     console.log(error);
-  //   }
-  // );
-  // this.crearFormulario()
-
-  getId() {
-    this.api.getUsuarios().subscribe(
-      (usuarios)=>{
-        console.log(usuarios);
-        this.users = usuarios;
-        console.log(this.users);
-      }
-    )
   }
 
   registerVehiculo(){
-    console.log(this.form.value)
+    console.log(this.form.value);
     this.api.registerVehiculo(this.form.value).subscribe(
       response => {
         console.log("Vehículo Registrado Exitosamente", response)
