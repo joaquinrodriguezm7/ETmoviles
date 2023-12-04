@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage-angular';
 import { DjangoService } from '../service/django.service';
+import * as e from 'cors';
 
 @Component({
   selector: 'app-viaje',
@@ -29,7 +30,6 @@ export class ViajePage implements OnInit {
       costo:['', [Validators.required]],
       patente:['', [Validators.required]],
       nombre_usuario_dueño:['', [Validators.required]],
-      nombre_usuario_cliente:['', [Validators.required]]
     })
   }
 
@@ -40,7 +40,7 @@ export class ViajePage implements OnInit {
         console.log("Viaje Registrado Exitosamente", response)
       },
       error => {
-        console.log("No Funciona", error)
+        console.log(e, error)
       }
     );
   }

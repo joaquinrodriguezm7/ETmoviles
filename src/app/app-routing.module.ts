@@ -33,7 +33,6 @@ const routes: Routes = [
   {
     path: 'viaje',
     loadChildren: () => import('./viaje/viaje.module').then( m => m.ViajePageModule),
-    canActivate: [AuthGuard]
   },
   {
     path: 'notfound',
@@ -42,7 +41,8 @@ const routes: Routes = [
   {
     path: 'cliente',
     loadChildren: () => import('./cliente/cliente.module').then( m => m.ClientePageModule)
-  },  {
+  },
+  {
     path: 'register-car',
     loadChildren: () => import('./register-car/register-car.module').then( m => m.RegisterCarPageModule)
   },
