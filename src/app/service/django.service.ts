@@ -27,4 +27,13 @@ export class DjangoService {
   registerViaje(data:any): Observable<any> {
     return this.http.post(this.apiURL+'/viaje',data)
   }
+
+  getViajes(data:any):Observable<any>{
+    return this.http.get(this.apiURL+'/viaje',data)
+    .pipe(retry(3));
+  }
+
+  putViaje(data:any):Observable<any>{
+    return this.http.put(this.apiURL+'/viaje',data)
+  }
 }
