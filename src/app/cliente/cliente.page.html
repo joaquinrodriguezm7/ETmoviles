@@ -5,9 +5,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button class="btn" color="warning" routerLink="/register-car">REGISTRAR VEHÍCULO</ion-button>
-  <ion-button class="btn" color="warning" routerLink="/viaje">INICIAR VIAJE</ion-button>
-  <ion-button class="btn" color="warning" routerLink="/login">CERRAR SESIÓN</ion-button>
+  <ion-button class="btn" color="warning" routerLink="/register-car">
+    <ion-icon slot="start" name="car-sport-outline"></ion-icon>
+    REGISTRAR VEHÍCULO
+  </ion-button>
+
+  <ion-button class="btn" color="warning" routerLink="/viaje">
+    <ion-icon slot="start" name="document-text-outline"></ion-icon>
+    INICIAR VIAJE
+  </ion-button>
+
+  <ion-button class="btn" color="warning" routerLink="/login">
+    <ion-icon slot="start" name="close-outline"></ion-icon>
+    CERRAR SESIÓN
+  </ion-button>
   
 </ion-content>
  
