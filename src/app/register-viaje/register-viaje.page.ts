@@ -38,7 +38,6 @@ export class RegisterViajePage implements OnInit {
     this.api.registerViaje(this.form.value).subscribe(
       response => {
         console.log("Viaje Registrado Exitosamente", response)
-        this.api.emitirActualizacionViajes();
       },
       error => {
         console.log(e, error)

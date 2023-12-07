@@ -42,12 +42,4 @@ export class DjangoService {
   putViaje(data:any):Observable<any>{
     return this.http.put(this.apiURL+'/viaje',data)
   }
-
-  emitirActualizacionViajes() {
-    this.actualizarViajesSubject.next();
-  }
-
-  onActualizarViajes(): Observable<void> {
-    return this.actualizarViajesSubject.asObservable();
-  }
 }

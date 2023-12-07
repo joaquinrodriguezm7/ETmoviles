@@ -33,7 +33,7 @@ describe('DuennoPage', () => {
 
     component.irARegistroCarro();
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/registro-carro']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/register-car']);
   });
 
   it('should navigate to /login when irARegistroCarro is called', () => {
