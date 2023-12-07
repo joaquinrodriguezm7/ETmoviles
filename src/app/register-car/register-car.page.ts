@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DjangoService } from '../service/django.service';
 import { Storage } from '@ionic/storage-angular';
+
+
 @Component({
   selector: 'app-register-car',
   templateUrl: './register-car.page.html',
@@ -45,7 +47,7 @@ export class RegisterCarPage implements OnInit {
         nombre_usuario: 'nombre_usuario_mock',
       };
   
-      this.form.patchValue(mockFormData);
+      
       this.api.registerVehiculo(this.form.value).subscribe(
         response => {
           console.log("Vehículo Registrado Exitosamente", response);
