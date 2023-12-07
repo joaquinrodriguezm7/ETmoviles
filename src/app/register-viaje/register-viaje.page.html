@@ -1,13 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>registerViaje</ion-title>
-  </ion-toolbar>
+<ion-header class="header">
+  <div class="logo-duoc">
+    <img src="assets/img/logoduocazul.png" alt="">
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">registerViaje</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="form" (ngSubmit)="registerViaje()">
+    
+    <ion-item class="inputform">
+      <ion-input label="Dirección de Inicio" labelPlacement="floating" formControlName="inicio"></ion-input>
+    </ion-item>
+
+    <ion-item class="inputform">
+      <ion-input label="Dirección de Término" labelPlacement="floating" formControlName="termino"></ion-input>
+    </ion-item>
+
+    <ion-item class="inputform">
+      <ion-input label="Costo por Persona" labelPlacement="floating" formControlName="costo"></ion-input>
+    </ion-item>
+
+    <ion-item class="inputform">
+      <ion-input label="Patente" labelPlacement="floating" formControlName="patente"></ion-input>
+    </ion-item>
+
+    <ion-item class="inputform">
+      <ion-input label="Nombre de Usuario" labelPlacement="floating" formControlName="nombre_usuario_dueño" [(ngModel)]="nombre_usuario" readonly="{{isDisabled}}"></ion-input>
+    </ion-item>
+
+    <ion-button class="btnreg" color="warning" (click)="registerViaje()">
+      REGISTRAR
+    </ion-button>
+  </form>
 </ion-content>
+
+<ion-footer class="footer"></ion-footer>

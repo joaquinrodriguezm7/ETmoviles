@@ -10,7 +10,7 @@ export class DuennoPage {
   constructor(private router: Router) {}
 
   irARegistroCarro() {
-    this.router.navigate(['/registro-carro']);
+    this.router.navigate(['/register-car']);
   }
 
   irALogin() {
