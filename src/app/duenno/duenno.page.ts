@@ -18,6 +18,6 @@ export class DuennoPage {
   }
 
   irAViaje(){
-    this.router.navigate(['/viaje'])
+    this.router.navigate(['/register-viaje'])
   }
 }

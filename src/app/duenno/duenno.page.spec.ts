@@ -49,6 +49,6 @@ describe('DuennoPage', () => {
 
     component.irAViaje();
 
-    expect(navigateSpy).toHaveBeenCalledWith(['/viaje']);
+    expect(navigateSpy).toHaveBeenCalledWith(['/register-viaje']);
   });
 });

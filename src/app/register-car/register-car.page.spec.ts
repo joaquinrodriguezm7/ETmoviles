@@ -102,7 +102,7 @@ describe('RegisterCarPage', () => {
       modelo: 'Camry',
       capacidad: 5,
       nombre_usuario: 'nombre_usuario_mock',
-    };
+    };  
 
     djangoService.registerVehiculo.and.returnValue(of({ mensaje: 'Éxito' }));
 

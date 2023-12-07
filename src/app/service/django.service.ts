@@ -35,6 +35,10 @@ export class DjangoService {
     .pipe(retry(3));
   }
 
+  getDetallesViaje(id_viaje: number): Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/viaje/${id_viaje}/`);
+  }
+
   putViaje(data:any):Observable<any>{
     return this.http.put(this.apiURL+'/viaje',data)
   }

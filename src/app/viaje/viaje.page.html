@@ -4,33 +4,23 @@
   </div>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <form [formGroup]="form" (ngSubmit)="registerViaje()">
-    
-    <ion-item class="inputform">
-      <ion-input label="Dirección de Inicio" labelPlacement="floating" formControlName="inicio"></ion-input>
-    </ion-item>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ viaje.nombre }}</ion-card-title>
+    </ion-card-header>
 
-    <ion-item class="inputform">
-      <ion-input label="Dirección de Término" labelPlacement="floating" formControlName="termino"></ion-input>
-    </ion-item>
-
-    <ion-item class="inputform">
-      <ion-input label="Costo por Persona" labelPlacement="floating" formControlName="costo"></ion-input>
-    </ion-item>
-
-    <ion-item class="inputform">
-      <ion-input label="Patente" labelPlacement="floating" formControlName="patente"></ion-input>
-    </ion-item>
-
-    <ion-item class="inputform">
-      <ion-input label="Nombre de Usuario" labelPlacement="floating" formControlName="nombre_usuario_dueño" [(ngModel)]="nombre_usuario" readonly="{{isDisabled}}"></ion-input>
-    </ion-item>
-
-    <ion-button class="btnreg" color="warning" (click)="registerViaje()">
-      REGISTRAR
+    <ion-card-content>
+      <p>Inicio: {{ viaje.inicio }}</p>
+      <p>Termino: {{ viaje.termino }}</p>
+      <p>Patente: {{ viaje.patente }}</p>
+      <p>Nombre Dueño: {{ viaje.nombre_usuario_duenno }}</p>
+      <p>Costo: {{ viaje.costo }}</p>
+    </ion-card-content>
+    <ion-button (click)="tomarViaje(viaje.id_viaje)" style="float:right">
+      Tomar Viaje
     </ion-button>
-  </form>
+  </ion-card>
 </ion-content>
 
 <ion-footer class="footer"></ion-footer>

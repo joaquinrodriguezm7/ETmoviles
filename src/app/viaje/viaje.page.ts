@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage-angular';
 import { DjangoService } from '../service/django.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as e from 'cors';
 
 @Component({
@@ -10,39 +11,43 @@ import * as e from 'cors';
   styleUrls: ['./viaje.page.scss'],
 })
 export class ViajePage implements OnInit {
-  form!: FormGroup;
-  nombre_usuario: any;
-  isDisabled: boolean = true
-  constructor(private storage: Storage, private fb: FormBuilder, private api : DjangoService) { }
+  user : string = '';
+  viaje : any = {};
+  id_viaje: any;
+  constructor(private storage: Storage, private fb: FormBuilder, private api : DjangoService, private route: ActivatedRoute, private router: Router) {
+    
+    this.route.queryParams.subscribe((params) => {
+      this.id_viaje = params['id_viaje'];
+      console.log('Id del viaje:', this.id_viaje);
 
+      this.api.getDetallesViaje(this.id_viaje).subscribe(
+        (response) => {
+          console.log('Detalles del viaje:', response);
+          this.viaje = response;
+        },
+        (error) => {
+          console.error('Error al obtener detalles del viaje:', error);
+        }
+      );
+    });
+   }
+    
   async ngOnInit() {
-    this.crearFormulario();
-    this.storage.create();
-    this.storage.get('nombre_usuario').then((val) => {
-      this.nombre_usuario=val;
-      });
+    this.storage.get('user').then((valor) => {
+      this.user = valor;
+    });
   }
 
-  crearFormulario() {
-    this.form = this.fb.group({
-      inicio:['', [Validators.required]],
-      termino:['', [Validators.required]],
-      costo:['', [Validators.required]],
-      patente:['', [Validators.required]],
-      nombre_usuario_dueño:['', [Validators.required]],
-    })
-  }
-
-  registerViaje(){
-    console.log(this.form.value);
-    this.api.registerViaje(this.form.value).subscribe(
-      response => {
-        console.log("Viaje Registrado Exitosamente", response)
-        this.api.emitirActualizacionViajes();
-      },
-      error => {
-        console.log(e, error)
+  tomarViaje(id_viaje: any){
+    let data = {
+      id_viaje: id_viaje,
+      nombre_usuario_cliente: this.user
+    }
+    console.log(this.id_viaje)
+    this.api.putViaje(data).subscribe(
+      (response) => {
+        console.log(data.id_viaje,data.nombre_usuario_cliente,response)
       }
-    );
+    )
   }
 }
