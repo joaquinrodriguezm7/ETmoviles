@@ -39,19 +39,13 @@ const routes: Routes = [
     loadChildren: () => import('./notfound/notfound.module').then( m => m.NotfoundPageModule)
   },
   {
-    path: 'cliente',
-    loadChildren: () => import('./cliente/cliente.module').then( m => m.ClientePageModule)
-  },
-  {
     path: 'register-car',
     loadChildren: () => import('./register-car/register-car.module').then( m => m.RegisterCarPageModule)
   },
-
-
-
-
-
-
+  {
+    path: 'duenno',
+    loadChildren: () => import('./duenno/duenno.module').then( m => m.DuennoPageModule)
+  },
 ];
 
 @NgModule({

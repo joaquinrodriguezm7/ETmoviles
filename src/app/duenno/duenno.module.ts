@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ClientePageRoutingModule } from './cliente-routing.module';
+import { DuennoPageRoutingModule } from './duenno-routing.module';
 
-import { ClientePage } from './cliente.page';
+import { DuennoPage } from './duenno.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ClientePageRoutingModule
+    DuennoPageRoutingModule
   ],
-  declarations: [ClientePage]
+  declarations: [DuennoPage]
 })
-export class ClientePageModule {}
+export class DuennoPageModule {}

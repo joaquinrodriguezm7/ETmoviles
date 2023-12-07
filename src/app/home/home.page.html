@@ -13,9 +13,9 @@
 
   <h1 class="txt-bienvenida">¡Bienvenid@ {{user}}!</h1>
 
-  <div *ngFor="let i of viaje">
-    <ion-card>
-      <ion-card-header>
+ <ng-container *ngIf="viaje && viaje.length > 0 ; else campoVacio">
+    <ion-card *ngFor="let i of viaje">
+      <ion-card-header *ngIf="i.nombre_usuario_cliente === ''">
         <ion-card-title>
           {{i.patente}}
         </ion-card-title>
@@ -23,14 +23,20 @@
           {{i.inicio}} hasta {{i.termino}}
         </ion-card-subtitle>
       </ion-card-header>
-      <ion-button class="btnviaje" color="warning" style="float:right;" (click)="tomarViaje(i)">
-        TOMAR VIAJE
+      <ion-button *ngIf="i.nombre_usuario_cliente === ''" style="float:right;" (click)="tomarViaje(i)">
+        Tomar Viaje
       </ion-button>
     </ion-card>
-  </div>
+  </ng-container>
+
+  <ng-template #campoVacio>
+    <ion-text class="ion-text-center">
+      No hay viajes disponibles
+    </ion-text>
+  </ng-template>
 
   
 </ion-content>
 
-<ion-footer class="footer">
+<ion-footer class="footer ion-text-center">
 </ion-footer>

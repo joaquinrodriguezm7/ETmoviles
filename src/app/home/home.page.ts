@@ -12,8 +12,7 @@ export class HomePage implements OnInit{
 
   public alertButtons = ['OK'];
   user : string = '';
-  viaje : any;
-  id: any;
+  viaje : any[] = [];
   constructor(private router : Router, private route: ActivatedRoute, private storage : Storage, private api : DjangoService) {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if(state && state['user']){
@@ -22,9 +21,11 @@ export class HomePage implements OnInit{
     let obj ={
       user: this.user
     };
+    
     this.api.getViajes(obj).subscribe(
       (response)=>{
         this.viaje=response
+        console.log(this.viaje)
       }
     )
   }
@@ -43,7 +44,7 @@ export class HomePage implements OnInit{
     }
     this.api.putViaje(data).subscribe(
       (response) => {
-        console.log('a',data.id_viaje,data.nombre_usuario_cliente,response)
+        console.log(data.id_viaje,data.nombre_usuario_cliente,response)
       }
     )
   }

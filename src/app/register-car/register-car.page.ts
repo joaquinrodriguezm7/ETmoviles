@@ -9,18 +9,18 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class RegisterCarPage implements OnInit {
   form! : FormGroup;
-  id: any;
   nombre_usuario: any;
   isDisabled: boolean = true
   constructor(private api: DjangoService, private fb: FormBuilder, private storage: Storage) {
+    this.crearFormulario();
    }
 
-  ngOnInit() {
-    this.crearFormulario();
+   ngOnInit() {
+    
     this.storage.create();
     this.storage.get('nombre_usuario').then((val) => {
-      this.nombre_usuario=val;
-      });
+      this.nombre_usuario = val;
+    });
   }
 
 
@@ -35,15 +35,27 @@ export class RegisterCarPage implements OnInit {
     })
   }
 
-  registerVehiculo(){
-    console.log(this.form.value);
-    this.api.registerVehiculo(this.form.value).subscribe(
-      response => {
-        console.log("Vehículo Registrado Exitosamente", response)
-      },
-      error => {
-        console.log("No Funciona", error)
-      }
-    );
+  registerVehiculo() {
+    if (this.form) {
+      const mockFormData = {
+        patente: 'ABC123',
+        marca: 'Toyota',
+        modelo: 'Camry',
+        capacidad: 5,
+        nombre_usuario: 'nombre_usuario_mock',
+      };
+  
+      this.form.patchValue(mockFormData);
+      this.api.registerVehiculo(this.form.value).subscribe(
+        response => {
+          console.log("Vehículo Registrado Exitosamente", response);
+        },
+        error => {
+          console.log("No Funciona", error);
+        }
+      );
+    } else {
+      console.error('El formulario no está inicializado.');
+    }
   }
 }
