@@ -9,8 +9,8 @@
     
     <ion-item class="inputform">
       <ion-label>Sede</ion-label>
-      <ion-select label="Sede" formControlName="sede" labelPlacement="floating">
-        <ion-select-option *ngFor="let sede of sedes" [value]="sede.nombre_sede">{{ sede.nombre_sede }}</ion-select-option>
+      <ion-select label="Sede" formControlName="sede" labelPlacement="floating" interface="popover">
+        <ion-select-option *ngFor="let s of sedes" [value]="s.nombre_sede">{{ s.nombre_sede }}</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -25,14 +25,21 @@
     <ion-item class="inputform">
       <ion-input label="Costo por Persona" labelPlacement="floating" formControlName="costo"></ion-input>
     </ion-item>
-
+    
     <ion-item class="inputform">
-      <ion-input label="Patente" labelPlacement="floating" formControlName="patente"></ion-input>
+      <ion-select label="Patente" formControlName="patente" labelPlacement="floating" interface="popover" (ionChange)="actualizarCapacidad()">
+        <ion-select-option *ngFor="let v of vehiculos" [value]="v.patente">{{ v.patente }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item class="inputform">
+      <ion-input label="Capacidad" labelPlacement="floating" formControlName="capacidad" [value]="form.get('patente')?.value ? obtenerCapacidad() : ''" readonly="{{isDisabled}}"></ion-input>
     </ion-item>
 
     <ion-item class="inputform">
-      <ion-input label="Nombre de Usuario" labelPlacement="floating" formControlName="nombre_usuario_dueño" [(ngModel)]="nombre_usuario" readonly="{{isDisabled}}"></ion-input>
+      <ion-input label="Nombre de Usuario" labelPlacement="floating" formControlName="nombre_usuario_dueño" [(ngModel)]="user" readonly="{{isDisabled}}"></ion-input>
     </ion-item>
+
 
     <ion-button class="btnreg" color="warning" (click)="registerViaje()">
       REGISTRAR

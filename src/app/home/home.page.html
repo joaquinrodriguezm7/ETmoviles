@@ -23,7 +23,7 @@
 
   <ng-container *ngIf="viaje && viaje.length > 0 ; else campoVacio">
     <ion-card *ngFor="let i of viaje">
-      <ion-card-header *ngIf="i.nombre_usuario_cliente === ''">
+      <ion-card-header *ngIf="i.capacidad_disponible > 0">
         <ion-card-title>
           {{i.patente}}
         </ion-card-title>
@@ -31,7 +31,7 @@
           {{i.inicio}} hasta {{i.termino}}
         </ion-card-subtitle>
       </ion-card-header>
-      <ion-button *ngIf="i.nombre_usuario_cliente === ''" style="float:right;" (click)="verViaje(i)">
+      <ion-button *ngIf="i.capacidad_disponible > 0" style="float:right;" (click)="verViaje(i)">
         Ver Viaje
       </ion-button>
     </ion-card>

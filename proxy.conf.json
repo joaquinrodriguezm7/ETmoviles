@@ -1,6 +1,6 @@
 {
     "/api/": {
-        "target": "http://localhost:8000/",
+        "target": "https://t9dnm8rd-8000.brs.devtunnels.ms/",
         "secure": false,
         "changeOrigin": true
     }
