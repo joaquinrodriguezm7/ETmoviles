@@ -8,6 +8,13 @@
   <form [formGroup]="form" (ngSubmit)="registerViaje()">
     
     <ion-item class="inputform">
+      <ion-label>Sede</ion-label>
+      <ion-select label="Sede" formControlName="sede" labelPlacement="floating">
+        <ion-select-option *ngFor="let sede of sedes" [value]="sede.nombre_sede">{{ sede.nombre_sede }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="inputform">
       <ion-input label="Dirección de Inicio" labelPlacement="floating" formControlName="inicio"></ion-input>
     </ion-item>
 

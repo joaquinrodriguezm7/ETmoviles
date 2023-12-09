@@ -12,8 +12,19 @@ import * as e from 'cors';
 export class RegisterViajePage implements OnInit {
   form!: FormGroup;
   nombre_usuario: any;
-  isDisabled: boolean = true
-  constructor(private storage: Storage, private fb: FormBuilder, private api : DjangoService) { }
+  sedes: any[] = [];
+  isDisabled: boolean = true;
+
+  constructor(private storage: Storage, private fb: FormBuilder, private api : DjangoService) { 
+    this.api.getSedes().subscribe(
+      (sedes) => {
+        this.sedes = sedes;
+      },
+      (error) => {
+        console.error('Error al obtener las sedes', error);
+      }
+    );
+  }
 
   async ngOnInit() {
     this.crearFormulario();
@@ -23,8 +34,11 @@ export class RegisterViajePage implements OnInit {
       });
   }
 
+  
+
   crearFormulario() {
     this.form = this.fb.group({
+      sede:['', [Validators.required]],
       inicio:['', [Validators.required]],
       termino:['', [Validators.required]],
       costo:['', [Validators.required]],

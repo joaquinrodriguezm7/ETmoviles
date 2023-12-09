@@ -13,7 +13,15 @@
 
   <h1 class="txt-bienvenida">¡Bienvenid@ {{user}}!</h1>
 
- <ng-container *ngIf="viaje && viaje.length > 0 ; else campoVacio">
+  <ion-item>
+    <ion-label>Sede</ion-label>
+    <ion-select [(ngModel)]="sede" label="Sede" labelPlacement="floating " interface="popover" (ionChange)="event($event)" >
+      <ion-select-option value="todos">Todos los viajes</ion-select-option>
+      <ion-select-option *ngFor="let s of sedes"  >{{ s.nombre_sede }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ng-container *ngIf="viaje && viaje.length > 0 ; else campoVacio">
     <ion-card *ngFor="let i of viaje">
       <ion-card-header *ngIf="i.nombre_usuario_cliente === ''">
         <ion-card-title>
@@ -28,7 +36,7 @@
       </ion-button>
     </ion-card>
   </ng-container>
-
+  
   <ng-template #campoVacio>
     <div class="divcenter">
       <ion-text class="txt-nodisp">
@@ -36,8 +44,6 @@
       </ion-text>
     </div>
   </ng-template>
-
-  
 </ion-content>
 
 <ion-footer class="footer ion-text-center">

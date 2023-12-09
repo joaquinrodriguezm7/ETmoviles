@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, retry, Subject} from 'rxjs';
 
 @Injectable({
@@ -30,9 +30,14 @@ export class DjangoService {
     return this.http.post(this.apiURL+'/viaje',data)
   }
 
-  getViajes(data:any):Observable<any>{
-    return this.http.get(this.apiURL+'/viaje',data)
-    .pipe(retry(3));
+  getViajes(data: any): Observable<any> {
+    let params = new HttpParams();
+
+    if (data.sede) {
+        params = params.set('sede', data.sede);
+    }
+
+    return this.http.get(this.apiURL + '/viaje', { params }).pipe(retry(3));
   }
 
   getDetallesViaje(id_viaje: number): Observable<any> {
@@ -41,5 +46,10 @@ export class DjangoService {
 
   putViaje(data:any):Observable<any>{
     return this.http.put(this.apiURL+'/viaje',data)
+  }
+
+  getSedes():Observable<any>{
+    return this.http.get(this.apiURL+'/sede')
+    .pipe(retry(3));
   }
 }

@@ -14,6 +14,8 @@ export class HomePage implements OnInit{
   user : string = '';
   viaje : any[] = [];
   id : any;
+  sedes: any[] = [];
+  sede: string = 'todos';
   constructor(private router : Router, private route: ActivatedRoute, private storage : Storage, private api : DjangoService, private navCtrl : NavController) {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if(state && state['user']){
@@ -27,7 +29,15 @@ export class HomePage implements OnInit{
       (response)=>{
         this.viaje=response
       }
-    )
+    );
+    this.api.getSedes().subscribe(
+      (sedes) => {
+        this.sedes = sedes;
+      },
+      (error) => {
+        console.error('Error al obtener las sedes', error);
+      }
+    );
   }
 
   async ngOnInit(){
@@ -43,6 +53,28 @@ export class HomePage implements OnInit{
     this.navCtrl.navigateForward('/viaje',{queryParams: {
       id_viaje: this.id
     }});
+  }
+
+  event($event: any) {
+    if (this.sede === 'todos') {
+        this.api.getViajes({}).subscribe(
+            (response) => {
+                this.viaje = response;
+            },
+            (error) => {
+                console.error('Error al obtener todos los viajes', error);
+            }
+        );
+    } else {
+        this.api.getViajes({ sede: this.sede }).subscribe(
+            (response) => {
+                this.viaje = response;
+            },
+            (error) => {
+                console.error('Error al obtener viajes filtrados', error);
+            }
+        );
+    }
   }
 }
 
