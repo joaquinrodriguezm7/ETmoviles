@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, waitForAsync, flush} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginPage } from './login.page';
 import { DjangoService } from '../service/django.service';
@@ -40,8 +40,12 @@ describe('LoginPage', () => {
     djangoService = TestBed.inject(DjangoService) as jasmine.SpyObj<DjangoService>;
     router = TestBed.inject(Router);
     fixture.detectChanges();
-    
   }));
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -101,11 +105,16 @@ describe('LoginPage', () => {
     const errorResponse = { status: 400, message: 'Credenciales inválidas' };
     djangoService.postData.and.returnValue(throwError(errorResponse));
 
+    spyOn(console, 'error'); 
+
     component.guardar();
     tick();
     fixture.detectChanges();
+    tick(); 
 
     expect(component.mensaje).toBe('Credenciales inválidas');
+    expect(console.error).toHaveBeenCalled();
+    flush();
   }));
 
   it('should handle internal server error and show error message', fakeAsync(() => {
@@ -117,5 +126,22 @@ describe('LoginPage', () => {
     fixture.detectChanges();
 
     expect(component.mensaje).toBe('Error interno del servidor');
+    flush();
+  }));
+
+  it('should handle internal server error and show error message', fakeAsync(() => {
+    const errorResponse = { status: 500, message: 'Error interno del servidor' };
+    djangoService.postData.and.returnValue(throwError(errorResponse));
+
+    spyOn(console, 'error'); 
+
+    component.guardar();
+    tick();
+    fixture.detectChanges();
+    tick(); 
+
+    expect(component.mensaje).toBe('Error interno del servidor');
+    expect(console.error).toHaveBeenCalled();
+    flush();
   }));
 });

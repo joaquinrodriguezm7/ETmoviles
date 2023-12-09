@@ -72,19 +72,8 @@ export class LoginPage implements OnInit {
       this.storage.remove('pass');
     }
 
-    this.DjangoService.postData(this.forma.value)
-      .pipe(
-        catchError((error) => {
-          console.error('Error durante el inicio de sesión:', error);
-          if (error.status === 400) {
-            this.mensaje = 'Credenciales inválidas';
-          } else if (error.status === 500) {
-            this.mensaje = 'Error interno del servidor';
-          }
-          return throwError(error);
-        })
-      )
-      .subscribe((response) => {
+    this.DjangoService.postData(this.forma.value).subscribe(
+      (response) => {
         this.id = response.id_usuario;
         this.storage.set("id_usuario", this.id);
         console.log(this.id)
@@ -99,8 +88,24 @@ export class LoginPage implements OnInit {
           });
           
         }
-        this.mensaje = 'Se ha iniciado sesión correctamente';
-      });
+        this.mensaje = 'Se ha iniciado sesión correctamente';},
+        (error)=>{
+          console.error('Error durante el inicio de sesión:', error);
+          if(error.status === 400){
+            this.mensaje = 'Credenciales inválidas';
+            setTimeout(() => {
+              this.mensaje='';
+            }, 5000);
+          }
+          else if(error.status === 500){
+            this.mensaje = 'Error interno del servidor';
+            setTimeout(() => {
+              this.mensaje='';
+            }, 5000);
+          } 
+          return throwError(error);
+        }
+      );
   }
 
   check() {
