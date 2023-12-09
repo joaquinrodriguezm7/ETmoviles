@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { DjangoService } from '../service/django.service';
 import { NavController } from '@ionic/angular';
+import { ChangeDetectorRef } from '@angular/core';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -16,7 +18,7 @@ export class HomePage implements OnInit{
   id : any;
   sedes: any[] = [];
   sede: string = 'todos';
-  constructor(private router : Router, private route: ActivatedRoute, private storage : Storage, private api : DjangoService, private navCtrl : NavController) {
+  constructor(private router : Router, private route: ActivatedRoute, private storage : Storage, private api : DjangoService, private navCtrl : NavController, private cdr: ChangeDetectorRef) {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if(state && state['user']){
       this.user = state['user'];
@@ -26,10 +28,14 @@ export class HomePage implements OnInit{
     };
     
     this.api.getViajes(obj).subscribe(
-      (response)=>{
-        this.viaje=response
-      }
-    );
+  (response) => {
+    this.viaje = response;
+    this.cdr.detectChanges();
+  },
+  (error) => {
+    console.error('Error al obtener los viajes', error);
+  }
+) ;
     this.api.getSedes().subscribe(
       (sedes) => {
         this.sedes = sedes;
@@ -60,6 +66,7 @@ export class HomePage implements OnInit{
         this.api.getViajes({}).subscribe(
             (response) => {
                 this.viaje = response;
+                console.log(this.viaje)
             },
             (error) => {
                 console.error('Error al obtener todos los viajes', error);
@@ -69,6 +76,7 @@ export class HomePage implements OnInit{
         this.api.getViajes({ sede: this.sede }).subscribe(
             (response) => {
                 this.viaje = response;
+                console.log(this.viaje)
             },
             (error) => {
                 console.error('Error al obtener viajes filtrados', error);

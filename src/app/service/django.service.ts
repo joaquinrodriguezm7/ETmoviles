@@ -10,7 +10,7 @@ export class DjangoService {
   private actualizarViajesSubject = new Subject<void>();
 
   apiURL = 'http://127.0.0.1:8000/api'
-  //https://9pn8qpf3-8000.brs.devtunnels.ms/api
+  //https://t9dnm8rd-8000.brs.devtunnels.ms/api
   constructor(private http: HttpClient) { }
 
   postData(data: any):Observable<any>{
@@ -24,6 +24,10 @@ export class DjangoService {
 
   registerVehiculo(data: any): Observable<any> {
     return this.http.post(this.apiURL+'/vehiculo', data);
+  }
+
+  getVehiculos(user: string) {
+    return this.http.get<any>(`${this.apiURL}/vehiculo/${user}/`);
   }
 
   registerViaje(data:any): Observable<any> {

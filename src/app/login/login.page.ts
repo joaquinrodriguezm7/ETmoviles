@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   user: string = '';
   forma!: FormGroup;
   mensaje: string = '';
-
+  id: any;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -85,6 +85,9 @@ export class LoginPage implements OnInit {
         })
       )
       .subscribe((response) => {
+        this.id = response.id_usuario;
+        this.storage.set("id_usuario", this.id);
+        console.log(this.id)
         if (response.tipoUsuario === 2) {
           this.zone.run(() => {
             this.router.navigate(['/home']);

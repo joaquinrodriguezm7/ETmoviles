@@ -38,16 +38,18 @@ export class ViajePage implements OnInit {
     });
   }
 
-  tomarViaje(id_viaje: any){
+  tomarViaje(id_viaje: any) {
     let data = {
       id_viaje: id_viaje,
       nombre_usuario_cliente: this.user
-    }
-    console.log(this.id_viaje)
+    };
     this.api.putViaje(data).subscribe(
       (response) => {
-        console.log(data.id_viaje,data.nombre_usuario_cliente,response)
+        console.log('Viaje tomado correctamente:', response);
+      },
+      (error) => {
+        console.error('Error al tomar el viaje:', error);
       }
-    )
+    );
   }
 }
