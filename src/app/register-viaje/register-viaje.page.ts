@@ -32,19 +32,16 @@ export class RegisterViajePage implements OnInit {
     this.storage.create();
     this.storage.get('nombre_usuario').then((val) => {
       this.user=val;
-      console.log(this.user)
-
+      
       console.log('URL de solicitud:', `${this.api.apiURL}/vehiculo/${this.user}/`);
     
       if (this.user) {
         this.api.getVehiculos(this.user).subscribe(
           (response) => {
               this.vehiculos = response;
-              console.log(response);
           },
           (error) => {
               console.error('Error al obtener la patente', error);
-              console.log(this.user);
           }
         );
       } else{
@@ -66,7 +63,6 @@ export class RegisterViajePage implements OnInit {
   }
 
   registerViaje(){
-    console.log(this.form.value);
     this.api.registerViaje(this.form.value).subscribe(
       (response) => {
         console.log("Viaje Registrado Exitosamente", response)

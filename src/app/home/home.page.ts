@@ -66,7 +66,6 @@ export class HomePage implements OnInit{
         this.api.getViajes({}).subscribe(
             (response) => {
                 this.viaje = response;
-                console.log(this.viaje)
             },
             (error) => {
                 console.error('Error al obtener todos los viajes', error);

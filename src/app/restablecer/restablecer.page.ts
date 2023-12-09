@@ -1,6 +1,8 @@
-import { Component, OnInit,ViewChild, ElementRef,Renderer2 } from '@angular/core';
-
-
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DjangoService } from '../service/django.service';
+import { Storage } from '@ionic/storage-angular';
 @Component({
   selector: 'app-restablecer',
   templateUrl: './restablecer.page.html',
@@ -8,17 +10,30 @@ import { Component, OnInit,ViewChild, ElementRef,Renderer2 } from '@angular/core
 })
 export class RestablecerPage implements OnInit {
 
-  @ViewChild('btn') btn :ElementRef;
-
-  constructor(private renderer : Renderer2) { }
-
-    applyBounce() {
-      this.renderer.addClass(this.btn.nativeElement, 'bounce');
-      setTimeout(() => {
-        this.renderer.removeClass(this.btn.nativeElement, 'bounce');
-      }, 200);}
+  forma!: FormGroup;
+  user: string;
+  constructor(private fb: FormBuilder, private router: Router, private api: DjangoService, private storage: Storage) { }
 
   ngOnInit() {
+    this.crearFormulario();
+    this.storage.create();
+    this.storage.get('user').then((val) => {
+      this.user = val;
+    });
   }
 
+  crearFormulario() {
+    this.forma = this.fb.group({
+      usuario: ['', [Validators.required, Validators.minLength(5)]],
+      password1: ['', Validators.required],
+      password2: ['', Validators.required],
+    });
+  }
+
+  nuevaPass(){
+    this.api.changePass(this.forma.value).subscribe(
+      (response) =>
+        console.log(response)
+      )
+  }
 }

@@ -22,6 +22,11 @@ export class DjangoService {
     .pipe(retry(3));
   }
 
+  changePass(data: any):Observable<any>{
+    return this.http.put(this.apiURL+'/user', data)
+    .pipe(retry(3));
+  }
+
   registerVehiculo(data: any): Observable<any> {
     return this.http.post(this.apiURL+'/vehiculo', data);
   }

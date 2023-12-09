@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Storage } from '@ionic/storage-angular';
 import { DjangoService } from '../service/django.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 import * as e from 'cors';
 
 @Component({
@@ -14,7 +15,7 @@ export class ViajePage implements OnInit {
   user : string = '';
   viaje : any = {};
   id_viaje: any;
-  constructor(private storage: Storage, private fb: FormBuilder, private api : DjangoService, private route: ActivatedRoute, private router: Router) {
+  constructor(private storage: Storage, private fb: FormBuilder, private api : DjangoService, private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) {
     
     this.route.queryParams.subscribe((params) => {
       this.id_viaje = params['id_viaje'];
@@ -46,6 +47,7 @@ export class ViajePage implements OnInit {
     this.api.putViaje(data).subscribe(
       (response) => {
         console.log('Viaje tomado correctamente:', response);
+        this.cdr.detectChanges();
       },
       (error) => {
         console.error('Error al tomar el viaje:', error);

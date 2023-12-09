@@ -76,7 +76,6 @@ export class LoginPage implements OnInit {
       (response) => {
         this.id = response.id_usuario;
         this.storage.set("id_usuario", this.id);
-        console.log(this.id)
         if (response.tipoUsuario === 2) {
           this.zone.run(() => {
             this.router.navigate(['/home']);
