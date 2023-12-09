@@ -5,6 +5,7 @@ import { Storage, IonicStorageModule} from '@ionic/storage-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ViajePage', () => {
   let component: ViajePage;
@@ -19,9 +20,10 @@ describe('ViajePage', () => {
         IonicStorageModule.forRoot(),
         ReactiveFormsModule,
         FormsModule,
+        RouterTestingModule
       ],
       providers: [
-        { provide: DjangoService },
+        { provide: Storage },
       ],
     }).compileComponents();
 
@@ -31,7 +33,6 @@ describe('ViajePage', () => {
   });
 
   it('should create', () => {
-    const service: DjangoService = TestBed.inject(DjangoService);
-    expect(service).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });

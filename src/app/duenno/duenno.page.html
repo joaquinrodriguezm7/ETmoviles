@@ -2,12 +2,30 @@
   <div class="logo-duoc">
     <img src="assets/img/logoduocazul.png" alt="">
   </div>
+
+  <ion-button filL="clear" style="float:left;" routerLink="/login">
+    <ion-icon style="color: white;" name="arrow-back-outline"></ion-icon>
+  </ion-button>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button class="btndueno" color="warning" (click)="irARegistroCarro()">REGISTRAR VEHÍCULO</ion-button>
-  <ion-button class="btndueno" color="warning" (click)="irAViaje()">INICIAR VIAJE</ion-button>
-  <ion-button class="btndueno" color="warning" (click)="irALogin()">CERRAR SESIÓN</ion-button>
+
+  <div class="divdueno">
+    <img src="assets/img/TELLEVOAPP2.jpg" alt="">
+  </div>
+
+  <ion-button class="btndueno" color="warning" (click)="irARegistroCarro()">
+    <ion-icon class="icon" name="car-sport-outline"></ion-icon>
+    REGISTRAR VEHÍCULO
+  </ion-button>
+
+  <ion-button class="btndueno" color="warning" (click)="irAViaje()">
+    <ion-icon class="icon" name="arrow-forward-outline"></ion-icon>
+    INICIAR VIAJE
+  </ion-button>
+
 </ion-content>
  
-<ion-footer class="footer"></ion-footer>
+<ion-footer class="footer">
+  <ion-button class="btncerrar" color="danger" (click)="irALogin()">CERRAR SESIÓN</ion-button>
+</ion-footer>
