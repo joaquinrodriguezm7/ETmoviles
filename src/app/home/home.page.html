@@ -35,8 +35,8 @@
           {{i.inicio}} hasta {{i.termino}}
         </ion-card-subtitle>
       </ion-card-header>
-      <ion-button *ngIf="i.capacidad_disponible > 0" style="float:right;" (click)="verViaje(i)">
-        Ver Viaje
+      <ion-button color="warning" class="btn" *ngIf="i.capacidad_disponible > 0" style="float:right;" (click)="verViaje(i)">
+        VER VIAJE
       </ion-button>
     </ion-card>
   </ng-container>
@@ -51,4 +51,10 @@
 </ion-content>
 
 <ion-footer class="footer ion-text-center">
+  <ion-button id="alertacerrar" class="btncerrar" color="danger" (click)="irALogin()">CERRAR SESIÓN</ion-button>
+  <ion-alert
+    trigger="alertacerrar"
+    header="Sesión Cerrada con Éxito :)"
+    [buttons]="alertButtons"
+  ></ion-alert>
 </ion-footer>

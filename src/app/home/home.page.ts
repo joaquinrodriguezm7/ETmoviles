@@ -12,12 +12,12 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class HomePage implements OnInit{
 
-  public alertButtons = ['OK'];
   user : string = '';
   viaje : any[] = [];
   id : any;
   sedes: any[] = [];
   sede: string = 'todos';
+  alertButtons = ['Aceptar'];
   constructor(private router : Router, private route: ActivatedRoute, private storage : Storage, private api : DjangoService, private navCtrl : NavController, private cdr: ChangeDetectorRef) {
     const state = this.router.getCurrentNavigation()?.extras.state;
     if(state && state['user']){
@@ -82,6 +82,10 @@ export class HomePage implements OnInit{
             }
         );
     }
+  }
+  
+  irALogin() {
+    this.router.navigate(['/login'])
   }
 }
 

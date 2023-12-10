@@ -10,6 +10,7 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./register-car.page.scss'],
 })
 export class RegisterCarPage implements OnInit {
+  alertButtons = ['Aceptar'];
   form! : FormGroup;
   nombre_usuario: any;
   isDisabled: boolean = true

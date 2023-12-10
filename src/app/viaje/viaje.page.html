@@ -22,9 +22,14 @@
       <p>Costo: {{ viaje.costo }}</p>
       <p>Capacidad: {{ viaje.capacidad_disponible }}</p>
     </ion-card-content>
-    <ion-button (click)="tomarViaje(viaje.id_viaje)" style="float:right">
-      Tomar Viaje
+    <ion-button class="btn" color="warning" id="alerta" (click)="tomarViaje(viaje.id_viaje)" style="float:right" routerLink="/home">
+      TOMAR VIAJE
     </ion-button>
+    <ion-alert
+    trigger="alerta"
+    header="Viaje Tomado con Éxito! :)"
+    [buttons]="alertButtons"
+    ></ion-alert>
   </ion-card>
 </ion-content>
 

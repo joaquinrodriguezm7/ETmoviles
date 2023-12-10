@@ -12,6 +12,7 @@ import * as e from 'cors';
   styleUrls: ['./viaje.page.scss'],
 })
 export class ViajePage implements OnInit {
+  alertButtons = ['Aceptar'];
   user : string = '';
   viaje : any = {};
   id_viaje: any;

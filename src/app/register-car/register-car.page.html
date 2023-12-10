@@ -2,6 +2,10 @@
   <div class="logo-duoc">
     <img src="assets/img/logoduocazul.png" alt="">
   </div>
+
+  <ion-button filL="clear" style="float:left;" routerLink="/duenno">
+    <ion-icon style="color: white;" name="arrow-back-outline"></ion-icon>
+  </ion-button>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -27,9 +31,14 @@
       <ion-input label="Nombre de Usuario" labelPlacement="floating" formControlName="nombre_usuario" [(ngModel)]="nombre_usuario" readonly="{{isDisabled}}"></ion-input>
     </ion-item>
 
-    <ion-button color="warning" class="btnreg" (click)="registerVehiculo()">
+    <ion-button id="present-alert" color="warning" class="btnreg" (click)="registerVehiculo()" [routerLink]="['/duenno']">
       REGISTRAR
     </ion-button>
+    <ion-alert
+    trigger="present-alert"
+    header="Vehículo Registrado con Éxito! :)"
+    [buttons]="alertButtons"
+    ></ion-alert>
   </form>
 </ion-content>
 

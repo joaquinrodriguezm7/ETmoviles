@@ -27,5 +27,10 @@
 </ion-content>
  
 <ion-footer class="footer">
-  <ion-button class="btncerrar" color="danger" (click)="irALogin()">CERRAR SESIÓN</ion-button>
+  <ion-button id="alerta-cerrar" class="btncerrar" color="danger" (click)="irALogin()">CERRAR SESIÓN</ion-button>
+  <ion-alert
+    trigger="alerta-cerrar"
+    header="Sesión Cerrada con Éxito :)"
+    [buttons]="alertButtons"
+  ></ion-alert>
 </ion-footer>

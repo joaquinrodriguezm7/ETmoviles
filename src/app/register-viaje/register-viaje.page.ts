@@ -10,6 +10,7 @@ import * as e from 'cors';
   styleUrls: ['./register-viaje.page.scss'],
 })
 export class RegisterViajePage implements OnInit {
+  alertButtons = ['Aceptar'];
   form!: FormGroup;
   user: any;
   sedes: any[] = [];

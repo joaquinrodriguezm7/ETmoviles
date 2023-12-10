@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./duenno.page.scss'],
 })
 export class DuennoPage {
+  
+  alertButtons = ['Aceptar'];
   constructor(private router: Router) {}
 
   irARegistroCarro() {
