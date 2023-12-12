@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule), pathMatch:'full',
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -32,7 +32,8 @@ const routes: Routes = [
   },
   {
     path: 'viaje',
-    loadChildren: () => import('./viaje/viaje.module').then( m => m.ViajePageModule), pathMatch:'full'
+    loadChildren: () => import('./viaje/viaje.module').then( m => m.ViajePageModule), pathMatch:'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'notfound',
@@ -40,15 +41,18 @@ const routes: Routes = [
   },
   {
     path: 'register-car',
-    loadChildren: () => import('./register-car/register-car.module').then( m => m.RegisterCarPageModule)
+    loadChildren: () => import('./register-car/register-car.module').then( m => m.RegisterCarPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'duenno',
-    loadChildren: () => import('./duenno/duenno.module').then( m => m.DuennoPageModule)
+    loadChildren: () => import('./duenno/duenno.module').then( m => m.DuennoPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'register-viaje',
-    loadChildren: () => import('./register-viaje/register-viaje.module').then( m => m.RegisterViajePageModule)
+    loadChildren: () => import('./register-viaje/register-viaje.module').then( m => m.RegisterViajePageModule),
+    canActivate: [AuthGuard]
   },
 
 ];

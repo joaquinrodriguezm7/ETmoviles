@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { DjangoService } from '../service/django.service';
 import { Storage } from '@ionic/storage-angular';
 import { throwError } from 'rxjs';
+import { TipoUsuario } from '../enum/tipoUsuario';
 
 @Component({
   selector: 'app-login',
@@ -76,6 +77,7 @@ export class LoginPage implements OnInit {
       (response) => {
         this.id = response.id_usuario;
         this.storage.set("id_usuario", this.id);
+        this.storage.set("userAuth", response.nombre_usuario)
         if (response.tipoUsuario === 2) {
           this.zone.run(() => {
             this.router.navigate(['/home']);

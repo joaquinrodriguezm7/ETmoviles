@@ -5,6 +5,8 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, ValidatorFn, Validators}
 import { Storage } from '@ionic/storage-angular';
 import { of, throwError } from 'rxjs';
 import { IonicModule } from '@ionic/angular';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DuennoPage } from '../duenno/duenno.page';
 
 describe('RegisterCarPage', () => {
   let component: RegisterCarPage;
@@ -22,7 +24,8 @@ describe('RegisterCarPage', () => {
         declarations: [RegisterCarPage],
         imports:[IonicModule.forRoot(),
                  ReactiveFormsModule,
-                 FormsModule],
+                 FormsModule,
+                 RouterTestingModule.withRoutes([{path:'duenno', component: DuennoPage}])],
         providers: [
           { provide: DjangoService, useValue: djangoServiceSpy },
           { provide: Storage, useValue: storageSpy },

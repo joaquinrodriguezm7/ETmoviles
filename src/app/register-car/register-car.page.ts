@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DjangoService } from '../service/django.service';
 import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class RegisterCarPage implements OnInit {
   form! : FormGroup;
   nombre_usuario: any;
   isDisabled: boolean = true
-  constructor(private api: DjangoService, private fb: FormBuilder, private storage: Storage) {
+  constructor(private api: DjangoService, private fb: FormBuilder, private storage: Storage, private router: Router) {
     this.crearFormulario();
    }
 
@@ -52,6 +53,7 @@ export class RegisterCarPage implements OnInit {
       this.api.registerVehiculo(this.form.value).subscribe(
         response => {
           console.log("Vehículo Registrado Exitosamente", response);
+          this.router.navigate(['/duenno'])
         },
         error => {
           console.log("No Funciona", error);
